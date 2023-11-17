@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+{% block title %}Survey{% endblock title %}
+{% block content %}
+{% for survey in survey_list %}
+<div class="card">
+   <div class="card-header">
+      <span class="font-weight-bold">{{ survey.email }}</span> &middot;
+      <span class="text-muted">by {{ survey.first_name }} 
+   </div>
+   <div class="card-body">
+      {{ survey }}
+   </div>
+   <div class="card-footer text-center text-muted">
+    <a href="{% url 'survey_edit' survey.pk %}">Edit</a> |
+    <a href="{% url 'survey_delete' survey.pk %}">Delete</a>
+   </div>
+</div>
+<br />
+{% endfor %}
+{% endblock content %}
