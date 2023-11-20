@@ -14,6 +14,9 @@ class SurveyListView(LoginRequiredMixin, ListView):
     model = Survey
     template_name = "survey_list.html"
 
+    def get_queryset(self):
+        return Survey.objects.filter(account=self.request.user)
+
 
 class SurveyDetailView(LoginRequiredMixin, DetailView):
     model = Survey
