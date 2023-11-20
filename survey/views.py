@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
@@ -25,14 +24,7 @@ class SurveyDetailView(LoginRequiredMixin, DetailView):
 
 class SurveyUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Survey
-    fields = (
-        "first_name",
-        "last_name",
-        "suffix",
-        "email",
-        "status",
-        "status_desc",
-    )
+    form_class = CustomSurveyForm
     template_name = "survey_edit.html"
 
     def test_func(self):
