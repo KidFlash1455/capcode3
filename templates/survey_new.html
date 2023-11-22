@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-
 <h1>New Survey</h1>
-<form action="" method="post">{% csrf_token %}
-   {{ form|crispy }}
-   <button class="btn btn-success ml-2" type="submit">Save</button>
-</form>
+<form action="" method="post">
+   {% csrf_token %}
+   <div class ="form-row">
+      <div class = "form-group col-md-6 mb-0">
+         {{form.first_name | as_crispy_field}}
+   {% comment %} {% crispy form %} {% endcomment %}
+   <button class="btn btn-success ml-2" type="submit">Submit</button>
+</form> 
+
 {% endblock content %}

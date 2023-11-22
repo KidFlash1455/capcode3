@@ -92,7 +92,7 @@ CONTACT_LIST_CHOICES = (
 
 class Survey(models.Model):
     # Contact Info
-    first_name = models.CharField(max_length=100, default="Default")
+    first_name = models.CharField("First Name:", max_length=100, default="Default")
     last_name = models.CharField(max_length=100, default="Default")
     suffix = models.CharField(
         "Full Name including degrees/designations to be listed on web-site and directory:",
