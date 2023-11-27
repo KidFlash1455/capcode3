@@ -6,8 +6,9 @@ from django.http import FileResponse
 import csv
 import io
 
+from accounts.models import CustomUser
 from .models import Survey
-from .forms import CustomSurveyForm
+from .forms import CustomSurveyForm, CustomAccountBooleanForm
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
@@ -51,6 +52,17 @@ class SurveyDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
 class SurveyCreateView(LoginRequiredMixin, CreateView):
     form_class = CustomSurveyForm
     template_name = "survey_new.html"
+
+    def form_valid(self, form):
+        form.instance.account = self.request.user
+        return super().form_valid(form)
+
+
+class AccountActive(LoginRequiredMixin, UpdateView):
+    form_class = CustomAccountBooleanForm
+    model = CustomUser
+    template_name = "account_active.html"
+    success_url = reverse_lazy("home")
 
     def form_valid(self, form):
         form.instance.account = self.request.user

@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
 from django.urls import reverse_lazy
 from crispy_forms.helper import FormHelper
+from accounts.models import CustomUser
 
 
 class CustomSurveyForm(forms.ModelForm):
@@ -24,3 +25,9 @@ class CustomSurveyForm(forms.ModelForm):
             "suffix": "e.g. John Smith, PHD, MD",
             "ds_class_1": "e.g. ABC 123 Advanced Data Science",
         }
+
+
+class CustomAccountBooleanForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ("active",)
