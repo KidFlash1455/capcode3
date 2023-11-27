@@ -4,11 +4,127 @@
 <h1>New Survey</h1>
 <form action="" method="post">
    {% csrf_token %}
-   <div class ="form-row">
-      <div class = "form-group col-md-6 mb-0">
-         {{form.first_name | as_crispy_field}}
+   <fieldset class ="form-group border p-3">
+      <legend class = "w-auto px-1">Contact Information:</legend>
+      <p>Affiliated Faculty designation is reserved for faculty ofMarquette University and University of Wisconsin -Milwaukee engaged in data science related research andeducation. (See Wikipedia for a basic description of datascience.) Data collected via this form will be used to createand publish faculty profiles on the public facingNorthwestern Mutual Data Science Institute (NMDSI) web-site. By submitting this information, you agree to suchpublication except where specifically noted below.Submissions will be reviewed by members of the NMDSIteam. Eligible faculty will be added to the Affiliated Facultyemail list and web-site. ContactNMDSIMAIL@northwesternmutual.com with any questions</p>
+      <div class ="form-group row">
+         <div class = "col-4">
+            {{form.first_name | as_crispy_field}}
+         </div>
+         <div class = "col-4">
+            {{form.last_name | as_crispy_field}}
+         </div>
+         <div class = "col-4">
+            {{form.email | as_crispy_field}}
+         </div>
+      </div>
+      <div class = "col-12">
+         {{form.suffix | as_crispy_field}}
+      </div>
+      <div class = "col-12">
+         {{form.status| as_crispy_field}}
+      </div>
+      <div class = "col-12">
+         {{form.status_desc| as_crispy_field}}
+      </div>
+   </fieldset>
+   <br>
+   <fieldset class ="form-group border p-3">
+      <legend class = "w-auto px-1">Detailed Information:</legend>
+      <p>The following questions will gather information about your background and current research and academic interests. It will be used to help connect you with other affiliated faculty with complimentary interests.</p>
+      <div class ="form-group row">
+         <div class = "col-6">
+            {{form.university | as_crispy_field}}
+         </div>
+         <div class = "col-6">
+            {{form.university_desc | as_crispy_field}}
+         </div>
+      </div>
+      <div class ="form-group row">
+         <div class = "col-6">
+            {{form.school | as_crispy_field }}
+         </div>
+         <div class = "col-6">
+            {{form.title | as_crispy_field }}
+         </div>
+      </div>
+      <div class ="form-group row">
+         <div class = "col-4">
+            {{form.directory_url | as_crispy_field }}
+         </div>
+         <div class = "col-4">
+            {{form.semantic_url | as_crispy_field }}
+         </div>
+         <div class = "col-4">
+            {{form.google_url | as_crispy_field }}
+         </div>
+      </div>
+      <div class ="form-group row">
+         <div class = "col-6">
+            {{form.research_tagline | as_crispy_field }}
+         </div>
+         <div class = "col-6">
+            {{form.research_desc | as_crispy_field }}
+         </div>
+      <div class ="form-group row">
+         <div class = "col-6">
+            {{form.research_count | as_crispy_field }}
+         </div>
+         <div class = "col-6">
+            {{form.research_examples | as_crispy_field }}
+         </div>
+         <p>Please list up to 3 classes you regularly teach that are related to data science methods, techniques, or applications. Include course number + Name:
+         <div class ="form-group row">
+            <div class = "col-4">
+               {{form.ds_class_1 | as_crispy_field}}
+            </div>
+            <div class = "col-4">
+               {{form.ds_class_2 | as_crispy_field}}
+            </div>
+            <div class = "col-4">
+               {{form.ds_class_3 | as_crispy_field}}
+            </div>
+         </div>
+      </div>
+   </fieldset>
+   <br>
+   <fieldset class ="form-group border p-3">
+      <legend class = "w-auto px-1">Techniques and Applications:</legend>
+      <p>The following information is optional but would be help colleagues locate you for potential collaborations</p>
+      {{form.ds_techniques | as_crispy_field}}
+      {{form.ds_techniques_other | as_crispy_field}}
+      <p>Application domains (list up to five domains to which your data science research could be applied. Most faculty will typically list one or two areas. Examples: crime, healthcare, ethics, etc. This is less about the technique and more about the application. )</p>
+      {{form.application_domains_1 | as_crispy_field}}
+      {{form.application_domains_2 | as_crispy_field}}
+      {{form.application_domains_3 | as_crispy_field}}
+      {{form.application_domains_4 | as_crispy_field}}
+      {{form.application_domains_5 | as_crispy_field}}
+      {{form.conclusion | as_crispy_field}}
+      {{form.contact_list | as_crispy_field}}
+      {{form.thank_you | as_crispy_field}}
+      </fieldset>
    {% comment %} {% crispy form %} {% endcomment %}
+   <!--Script-->
+   {% comment %} <script>
+      document.addEventListener("DOMContentLoaded", function() {
+         var dropdown = document.getElementById("id_status");  // Change to the actual ID of your dropdown
+      
+         dropdown.addEventListener("change", function() {
+             var selectedValue = dropdown.value;
+      
+             // Assuming you have a div with id "display-text"
+             var displayTextDiv = document.getElementById("div_id_status_desc");
+      
+             if (selectedValue === "Full-Time") {
+                 displayTextDiv.innerHTML = "Displaying text for Item 1";
+             } else if (selectedValue === "Visiting - 2+ years at MU or UWM") {
+                 displayTextDiv.innerHTML = "Displaying text for Item 2";
+             } else {
+                 displayTextDiv.innerHTML = "";  // Clear the display if none of the options match
+             }
+         });
+      }); 
+   </script> {% endcomment %}
    <button class="btn btn-success ml-2" type="submit">Submit</button>
-</form> 
-
+</form>
 {% endblock content %}

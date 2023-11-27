@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from multiselectfield import MultiSelectField
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 STATUS_CHOICES = (
@@ -95,11 +96,13 @@ class Survey(models.Model):
     first_name = models.CharField("First Name:", max_length=100, default="Default")
     last_name = models.CharField(max_length=100, default="Default")
     suffix = models.CharField(
-        "Full Name including degrees/designations to be listed on web-site and directory:",
+        "Suffix + Full Name:",
         max_length=100,
         default="Default",
     )
-    email = models.EmailField(default="Default@default.com")
+    email = models.EmailField(
+        "University Email address:", default="Default@default.com"
+    )
     status = models.CharField(
         "What is your status at the Marquette or UW-Milwaukee?",
         max_length=100,
@@ -129,7 +132,7 @@ class Survey(models.Model):
         default="default",
     )
     directory_url = models.CharField(
-        "University Profile or Directory URL (this will be included in theaffiliated faculty directory in lieu of other contact information)",
+        "University Profile or Directory URL",
         max_length=200,
         default="default",
     )
@@ -186,7 +189,7 @@ class Survey(models.Model):
     )
     ds_techniques_other = models.TextField(
         "Other primary data science methods or techniques not listed above.",
-        max_length=300,
+        max_length=200,
         default="default",
     )
     application_domains_1 = models.CharField(
