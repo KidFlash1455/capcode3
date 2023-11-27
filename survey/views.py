@@ -77,7 +77,7 @@ def survey_pdf(request):
     textob.setTextOrigin(inch, inch)
     textob.setFont("Helvetica", 14)
 
-    surveys = Survey.objects.all()
+    surveys = Survey.objects.filter(account__active=True)
     lines = []
 
     for survey in surveys:
