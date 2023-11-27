@@ -22,7 +22,7 @@
     <div class="module" id="recent-actions-module">
         <h2>{% translate 'Recent actions' %}</h2>
         <h3>{% translate 'My actions' %}</h3>
-        
+        <p><a href="{% url 'survey_pdf' %}">PDF Gen</a></p>
             {% load log %}
             {% get_admin_log 10 as admin_log for_user user %}
             {% if not admin_log %}
